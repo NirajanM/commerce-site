@@ -18,10 +18,10 @@ function App() {
             <Link to="/">
               <span>Home</span>
             </Link>
-            <Link to="/">
+            <Link to="/about">
               <span>About</span>
             </Link>
-            <Link to="/">
+            <Link to="/contact">
               <span>Contact</span>
             </Link>
             <span className='cursor-pointer'><ShoppingCartIcon /></span>
