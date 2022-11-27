@@ -74,7 +74,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
         </header>
         <section >
             <p className='bg-blue-500 text-white font-semibold text-2xl px-8 py-2 text-center'>Categories:</p>
-            <div className='grid grid-cols-5 gap-4 p-4'>
+            <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 lg:gap-4 lg:p-4 p-2'>
                 {categories.map((product) => {
                     return (
                         <Card name={product} />
