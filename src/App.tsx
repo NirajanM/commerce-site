@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Footer from './components/footer';
 import Home from './pages/home';
-import About from './pages/about';
 import Contact from './pages/contact';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 
@@ -20,9 +19,6 @@ function App() {
             <Link to="/">
               <span>Home</span>
             </Link>
-            <Link to="/about">
-              <span>About</span>
-            </Link>
             <Link to="/contact">
               <span>Contact</span>
             </Link>
@@ -32,7 +28,6 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/*" element={<Home />} />
-          <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Routes>
         <Footer />
