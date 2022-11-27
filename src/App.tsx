@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <nav className='bg-blue-600 px-12 py-8 flex justify-between items-center'>
-          <span className='font-black text-lg text-white'>AlienStickers</span>
+          <span className='font-black text-lg text-white'>AlienShop</span>
           <div className='flex justify-between gap-12 font-small items-center'>
             <Link to="/">
               <span>Home</span>
