@@ -6,6 +6,8 @@ import Footer from './components/footer';
 import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+
 
 function App() {
 
@@ -13,7 +15,7 @@ function App() {
     <>
       <Router>
         <nav className='bg-blue-600 px-12 py-8 flex justify-between items-center'>
-          <span className='font-black text-lg text-white'>AlienShop</span>
+          <span className='font-black text-lg flex justify-center items-center text-white'><StorefrontIcon /> AlienShop</span>
           <div className='flex justify-between gap-12 font-small items-center'>
             <Link to="/">
               <span>Home</span>
