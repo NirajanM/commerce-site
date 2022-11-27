@@ -4,9 +4,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ShieldIcon from '@mui/icons-material/Shield';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Card from '../components/card';
+import Categories from '../components/categories';
+import Products from '../components/products';
 interface IHomeProps {
 }
 
@@ -40,88 +42,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
     useEffect(() => {
         fetchProducts();
     }, []);
-    const categories = [
-        {
-            route: '/category/smartphones',
-            title: "smartphones",
-        },
-        {
-            route: '/category/laptops',
-            title: "laptops",
-        },
-        {
-            route: '/category/fragrances',
-            title: "fragrances",
-        },
-        {
-            route: '/category/skincare',
-            title: "skincare",
-        },
-        {
-            route: '/category/groceries',
-            title: "groceries",
-        },
-        {
-            route: '/category/homedecoration',
-            title: "home-decoration",
-        },
-        {
-            route: '/category/furniture',
-            title: "furniture",
-        },
-        {
-            route: '/category/tops',
-            title: "tops",
-        },
-        {
-            route: '/category/womensdresses',
-            title: "womens-dresses",
-        },
-        {
-            route: '/category/womensshoes',
-            title: "womens-shoes",
-        },
-        {
-            route: '/category/mensshirts',
-            title: "mens-shirts",
-        },
-        {
-            route: '/category/mensshoes',
-            title: "mens-shoes",
-        },
-        {
-            route: '/category/menswatches',
-            title: "mens-watches",
-        },
-        {
-            route: '/category/womenswatches',
-            title: "womens-watches",
-        },
-        {
-            route: '/category/womensbags',
-            title: "womens-bags",
-        },
-        {
-            route: '/category/womensjewellery',
-            title: "womens-jewellery",
-        },
-        {
-            route: "/category/sunglasses",
-            title: "sunglasses",
-        },
-        {
-            route: "/category/automotive",
-            title: "automotive",
-        },
-        {
-            route: "/category/motorcycle",
-            title: "motorcycle",
-        },
-        {
-            route: "/category/lighting",
-            title: "lighting",
-        }
-    ];
+
     return (<div id="home" className="py-4">
         <header className="px-60 py-20 text-center">
             <p id="boldstyle" className="text-5xl text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
@@ -137,13 +58,10 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
         </header>
         <section className='py-40 px-4'>
             <p className='bg-blue-500 text-white font-semibold text-2xl px-8 py-2 text-center'>Categories:</p>
-            <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 lg:gap-12 lg:py-12 lg:px-12 p-2'>
-                {categories.map((product) => {
-                    return (
-                        <Card name={product.title} route={product.route} />
-                    );
-                })}
-            </div>
+            <Routes>
+                <Route path="" element={<Categories />} />
+                <Route path='category/*' element={<Products />} />
+            </Routes>
         </section>
         <section className='text-center pb-40 px-4'>
             <span className='text-blue-500 text-3xl border-b-4 font-bold'>Why Us ?</span>
