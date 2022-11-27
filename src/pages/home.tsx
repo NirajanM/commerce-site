@@ -1,6 +1,9 @@
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ShieldIcon from '@mui/icons-material/Shield';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from '../components/card';
@@ -58,7 +61,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
         "automotive",
         "motorcycle",
         "lighting"
-    ]
+    ];
     return (<div id="home" className="py-4">
         <header className="px-60 py-20 text-center">
             <p id="boldstyle" className="text-5xl text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
@@ -72,14 +75,41 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                     inputProps={{ 'aria-label': 'Quick Search' }}
                 /></div>
         </header>
-        <section >
+        <section className='py-40 px-4'>
             <p className='bg-blue-500 text-white font-semibold text-2xl px-8 py-2 text-center'>Categories:</p>
-            <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 lg:gap-4 lg:p-4 p-2'>
+            <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 lg:gap-12 lg:py-12 lg:px-12 p-2'>
                 {categories.map((product) => {
                     return (
                         <Card name={product} />
                     );
                 })}
+            </div>
+        </section>
+        <section className='text-center pb-40 px-4'>
+            <span className='text-blue-500 text-3xl border-b-4 font-bold'>Why Us ?</span>
+            <div className='flex flex-col md:flex-row justify-evenly items-evenly gap-8 md:gap-0 p-12 text-slate-600'>
+                <div className='flex items-center justify-center'>
+                    <LocalShippingIcon fontSize='large' />
+                    <div className='flex flex-col text-left px-4'>
+                        <span className='text-lg'>FAST SHIPPING</span>
+                        <span className='text-slate-400'>All Over Nepal</span>
+                    </div>
+                </div>
+                <div className='flex items-center justify-center'>
+                    <ShieldIcon fontSize='large' />
+                    <div className='flex flex-col text-left px-4'>
+                        <span className='text-lg'>TRUST WORTHY</span>
+                        <span className='text-slate-400'>Since 40+ Years</span>
+                    </div>
+                </div>
+                <div className='flex items-center justify-center'>
+                    <HandshakeIcon fontSize='large' />
+                    <div className='flex flex-col text-left px-4'>
+                        <span className='text-lg'>CASH ON DELIVERY</span>
+                        <span className='text-slate-400'>Pay Hand To Hand</span>
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>);
