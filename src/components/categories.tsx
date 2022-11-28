@@ -45,7 +45,7 @@ const categories = [
         title: "womens-shoes",
     },
     {
-        route: '/category/mensshirts',
+        route: '/category/mens-shirts',
         title: "mens-shirts",
     },
     {
@@ -61,7 +61,7 @@ const categories = [
         title: "womens-watches",
     },
     {
-        route: '/category/womensbags',
+        route: '/category/womens-bags',
         title: "womens-bags",
     },
     {
