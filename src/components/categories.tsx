@@ -25,7 +25,7 @@ const categories = [
         title: "groceries",
     },
     {
-        route: '/category/homedecoration',
+        route: '/category/home-decoration',
         title: "home-decoration",
     },
     {
@@ -37,11 +37,11 @@ const categories = [
         title: "tops",
     },
     {
-        route: '/category/womensdresses',
+        route: '/category/womens-dresses',
         title: "womens-dresses",
     },
     {
-        route: '/category/womensshoes',
+        route: '/category/womens-shoes',
         title: "womens-shoes",
     },
     {
@@ -49,15 +49,15 @@ const categories = [
         title: "mens-shirts",
     },
     {
-        route: '/category/mensshoes',
+        route: '/category/mens-shoes',
         title: "mens-shoes",
     },
     {
-        route: '/category/menswatches',
+        route: '/category/mens-watches',
         title: "mens-watches",
     },
     {
-        route: '/category/womenswatches',
+        route: '/category/womens-watches',
         title: "womens-watches",
     },
     {
@@ -65,7 +65,7 @@ const categories = [
         title: "womens-bags",
     },
     {
-        route: '/category/womensjewellery',
+        route: '/category/womens-jewellery',
         title: "womens-jewellery",
     },
     {

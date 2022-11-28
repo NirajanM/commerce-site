@@ -5,7 +5,6 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ShieldIcon from '@mui/icons-material/Shield';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import Categories from '../components/categories';
 import Products from '../components/products';
 interface IHomeProps {
