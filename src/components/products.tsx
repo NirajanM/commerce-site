@@ -1,6 +1,7 @@
 import { useLocation, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import DisplayProduct from './displayProduct';
 interface IProductsProps {
 }
 type tProducts = {
@@ -44,6 +45,22 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                 <Link className='text-white bg-blue-400 hover:bg-blue-600 hover:scale-110 rounded-lg border-2 text-lg px-4 mb-4' to="/">
                     Go back
                 </Link>
+                <div className='grid grid-col-1 md:grid-col-1'>
+                    {products.map((product) => {
+                        return <DisplayProduct
+                            title={product.title}
+                            stock={product.stock}
+                            price={product.price}
+                            discount={product.discountPercentage}
+                            rating={product.rating}
+                            description={product.description}
+                            brand={product.brand}
+                            category={product.category}
+                            thumbnail={product.thumbnail}
+                            images={product.images}
+                        />
+                    })}
+                </div>
             </div>
         </div>);
 };
