@@ -1,4 +1,4 @@
-import { Rating, Button, Dialog, DialogTitle } from '@mui/material';
+import { Rating, Button, Dialog } from '@mui/material';
 import { useState } from "react";
 
 interface IDisplayProductProps {
@@ -17,15 +17,14 @@ interface IDisplayProductProps {
 }
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
+
     interface SimpleDialogProps {
         open: boolean;
-        onClose: () => void;
-        detail: string;
         images: [string];
     }
 
     function SimpleDialog(props: SimpleDialogProps) {
-        const { onClose, open, detail, images } = props;
+        const { open, images } = props;
 
         const handleClose = () => {
             setOpen(false);
@@ -33,7 +32,17 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
 
         return (
             <Dialog onClose={handleClose} open={open}>
-                <DialogTitle>{detail}</DialogTitle>
+                <div className='text-center'>
+                    <div className='flex snap-x'>
+                        {images.map((item) => (
+                            <img
+                                src={item}
+                                className="h-80 snap-center"
+                                onClick={() => { window.open(item) }}
+                            />
+                        ))}
+                    </div>
+                </div>
             </Dialog>
         );
     }
@@ -56,15 +65,17 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
             </a>
             <div className="px-5 pb-5">
                 <h5 className="text-xl font-semibold tracking-tight text-gray-700 dark:text-white">{props.title}</h5>
+                <p className='text-sm font-normal text-gray-600 py-4'>{props.description}</p>
+                <p className='text-sm font-normal text-gray-700 py-1'>brand : {props.brand}</p>
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    Check Details
+                    product images
                 </Button>
-                <SimpleDialog
-                    open={open}
-                    onClose={handleClose}
-                    detail={props.description}
-                    images={props.images}
-                />
+                <div className='py-2'>
+                    <SimpleDialog
+                        open={open}
+                        images={props.images}
+                    />
+                </div>
                 <div className="flex items-center mt-2.5 mb-5">
                     <Rating name="read-only" value={props.rating} readOnly precision={0.5} />
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{props.rating}</span>
