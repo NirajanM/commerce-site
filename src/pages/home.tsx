@@ -13,7 +13,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
 
     return (
         <div id="home" className="py-4">
-            <header className="px-60 py-20 text-center">
+            <header className="px-60 py-28 text-center">
                 <p id="boldstyle" className="text-5xl text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
                 <div className='border-2 border-slate-400/50 rounded-lg px-8 py-2 inline text-center'>
@@ -25,14 +25,15 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                         inputProps={{ 'aria-label': 'Quick Search' }}
                     /></div>
             </header>
-            <section className='py-40 '>
-                <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Categories:</p>
+            <section>
+                <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Products Categories:</p>
                 <Routes>
                     <Route path="" element={<Categories />} />
                     <Route path='category/*' element={<Products />} />
                 </Routes>
             </section>
-            <section className='text-center pb-40 px-4'>
+            <div className=' shadow-lg shadow-blue h-8'></div>
+            <section className='text-center py-40 px-4'>
                 <span className='text-blue-500 text-3xl border-b-4 font-bold'>Why Us ?</span>
                 <div className='flex flex-col md:flex-row justify-evenly items-evenly gap-8 md:gap-0 p-12 text-slate-600'>
                     <div className='flex items-center justify-center'>

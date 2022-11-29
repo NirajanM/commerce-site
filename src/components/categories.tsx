@@ -87,7 +87,7 @@ const categories = [
 ];
 const Categories: React.FunctionComponent<ICategoriesProps> = (props) => {
     return (
-        <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 lg:gap-12 lg:py-12 lg:px-12 p-2'>
+        <div className='grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-2 md:gap-3 md:p-3 xl:gap-12 xl:py-12 xl:px-12 p-2'>
             {categories.map((product) => {
                 return (
                     <Card name={product.title} route={product.route} />
