@@ -1,4 +1,6 @@
-import { Rating } from '@mui/material';
+import { Rating, Button, Dialog, DialogTitle } from '@mui/material';
+import { useState } from "react";
+
 interface IDisplayProductProps {
     title: string;
     price: number;
@@ -15,6 +17,37 @@ interface IDisplayProductProps {
 }
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
+    interface SimpleDialogProps {
+        open: boolean;
+        onClose: () => void;
+        detail: string;
+        images: [string];
+    }
+
+    function SimpleDialog(props: SimpleDialogProps) {
+        const { onClose, open, detail, images } = props;
+
+        const handleClose = () => {
+            setOpen(false);
+        };
+
+        return (
+            <Dialog onClose={handleClose} open={open}>
+                <DialogTitle>{detail}</DialogTitle>
+            </Dialog>
+        );
+    }
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
 
         <div className="w-full rounded-lg shadow-md ">
@@ -23,7 +56,15 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
             </a>
             <div className="px-5 pb-5">
                 <h5 className="text-xl font-semibold tracking-tight text-gray-700 dark:text-white">{props.title}</h5>
-                <span className='border-b-1 cursor-pointer hover:scale-105 hover:rounded-lg hover:border-2 px-2 py-1 my-4 hover:bg-blue-700 hover:text-white'>check details</span>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Check Details
+                </Button>
+                <SimpleDialog
+                    open={open}
+                    onClose={handleClose}
+                    detail={props.description}
+                    images={props.images}
+                />
                 <div className="flex items-center mt-2.5 mb-5">
                     <Rating name="read-only" value={props.rating} readOnly precision={0.5} />
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{props.rating}</span>
