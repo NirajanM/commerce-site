@@ -12,12 +12,13 @@ interface IHomeProps {
     user: {}
     authenticate: boolean
 }
+
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
     const { user, authenticate } = props;
     return (
         <div id="home" className="py-4">
-            <header className="px-60 py-28 text-center">
-                <p id="boldstyle" className="text-5xl text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
+            <header className="xl:px-60 lg:px-52 md:px-40 sm:px-20 px-10 py-28 text-center">
+                <p id="boldstyle" className="text-2xl text-slate-600 md:text-5xl md:text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
                 {/* <div className='border-2 border-slate-400/50 rounded-lg px-8 py-2 inline text-center'>
                     <IconButton type="button" aria-label="search">
