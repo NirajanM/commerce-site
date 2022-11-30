@@ -9,8 +9,11 @@ import Categories from '../components/categories';
 import Products from '../components/products';
 import LoginButton from '../components/Login';
 interface IHomeProps {
+    user: {}
+    authenticate: boolean
 }
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
+    const { user, authenticate } = props;
     return (
         <div id="home" className="py-4">
             <header className="px-60 py-28 text-center">
@@ -24,7 +27,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                         placeholder="Quick Search"
                         inputProps={{ 'aria-label': 'Quick Search' }}
                     /></div> */}
-                <LoginButton />
+                {!authenticate && <LoginButton />}
             </header>
             <section>
                 <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Products Categories:</p>
