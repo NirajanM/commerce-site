@@ -82,6 +82,7 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
             addCart(newUserCart)
         }
         else {
+
             addCart([...newUserCart, {
                 productId: id,
                 amount: 1

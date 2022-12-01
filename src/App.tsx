@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -7,13 +7,31 @@ import Home from './pages/home';
 import Contact from './pages/contact';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { useAuth0, User } from "@auth0/auth0-react";
-import { Avatar, Tooltip, Menu, MenuItem } from '@mui/material'
+import { Avatar, Tooltip, Menu, DialogTitle } from '@mui/material'
 import LogoutButton from './components/Logout';
 import { CartContext } from './context/CartContext';
+import { Fab, Dialog } from '@mui/material'
+import axios from "axios"
 
 type tCart = {
   productId: number;
   amount: number;
+}
+
+type tProducts = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string,
+  images: [
+    string
+  ]
 }
 
 function App() {
@@ -41,8 +59,77 @@ function App() {
     [userCart]
   );
 
+
+  const [wholeProducts, setWholeProducts] = useState<tProducts[] | []>([]);
+
+  //fetching all products in beginning
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get(`https://dummyjson.com/products?limit=100`);
+      setWholeProducts(res.data.products);
+      console.log(wholeProducts);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  //cart icon logic with dialog
+  const [openCart, setOpenCart] = useState<boolean>(false);
+
+  const handleCartClick = () => {
+    setOpenCart(true);
+  };
+
+  interface CartDialogProps {
+    open: boolean;
+  }
+
+  function CartDialog(props: CartDialogProps) {
+    const { open } = props;
+
+    const handleCartClose = () => {
+      setOpenCart(false);
+    };
+
+    return (
+      <>
+        <Dialog onClose={handleCartClose} open={openCart}>
+          <>
+            <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:</span>
+            {userCart.map((item) => {
+              return (
+                <div className="border-2 border-blue-100 p-1 cursor-pointer text-xl text-slate-500 text-center flex items-center ">
+                  <div className="flex justify-center w-1/5 mr-4 items-center ">
+                    <img src={`https://i.dummyjson.com/data/products/${item.productId}/thumbnail.jpg`} className="h-12" />
+                  </div>
+                  <span className="text-lg md:mt-4">
+                  </span>
+                </div>
+              )
+            })}
+          </>
+        </Dialog>
+      </>
+    );
+  }
+
+
   return (
     <>
+      <div className='fixed bottom-6 right-6 z-10'>
+        <Fab aria-label="add" onClick={handleCartClick} >
+          <ShoppingCartIcon className='text-blue-500/80 hover:text-blue-700' />
+        </Fab>
+        <div className='py-2'>
+          <CartDialog
+            open={openCart}
+          />
+        </div>
+      </div>
       <Router>
         <CartContext.Provider value={{
           addCart,
