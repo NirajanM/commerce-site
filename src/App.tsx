@@ -32,7 +32,7 @@ function App() {
   //cart logic:
   const [userCart, setUserCart] = useState<tCart[]>([]);
   const addCart = useCallback(
-    (newItem: tCart) => setUserCart([...userCart, newItem]),
+    (newCart: tCart[]) => setUserCart(newCart),
     [userCart]
   );
   const clearCart = useCallback(() => setUserCart([]), []);

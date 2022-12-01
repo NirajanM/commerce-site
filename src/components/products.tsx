@@ -48,6 +48,7 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 px-12 py-8'>
                     {products?.map((product) => {
                         return <DisplayProduct
+                            id={product.id}
                             title={product.title}
                             stock={product.stock}
                             price={product.price}

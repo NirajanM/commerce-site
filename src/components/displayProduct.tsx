@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { CartContext } from '../context/CartContext';
 
 interface IDisplayProductProps {
+    id: number;
     title: string;
     price: number;
     discount: number;
@@ -58,6 +59,34 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
         setOpen(false);
     };
 
+    const addToCart = (id: number) => {
+        let counter = 0
+        const newUserCart = userCart.map((eachItem) => {
+            if (eachItem.productId === id) {
+                counter++;
+                return (
+                    {
+                        productId: id,
+                        amount: eachItem.amount + 1
+                    }
+                )
+            }
+            else return eachItem;
+        });
+
+        if (counter != 0) {
+            addCart(newUserCart)
+        }
+        else {
+            addCart([...newUserCart, {
+                productId: id,
+                amount: 1
+            }])
+        }
+        console.log(userCart);
+
+    }
+
     return (
 
         <div className="w-full rounded-lg shadow-md ">
@@ -84,8 +113,11 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
                 <div className="flex items-center justify-between">
                     <span className="text-3xl font-bold text-gray-900 dark:text-white">${props.price}</span>
                     <div>
-                        <span className="text-3xl font-medium text-gray-700 text-sm dark:text-white px-4">stock :{props.stock}</span>
-                        <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+                        <span className="font-medium text-gray-700 text-sm dark:text-white px-4">stock :{props.stock}</span>
+                        <span
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
+                            onClick={() => { addToCart(props.id) }}
+                        >Add to cart</span>
                     </div>
                 </div>
             </div>
