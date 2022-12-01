@@ -20,6 +20,8 @@ interface IDisplayProductProps {
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
     const { addCart, removeItem, userCart, clearCart } = useContext(CartContext);
+
+    //image drawer opener
     interface SimpleDialogProps {
         open: boolean;
         images: [string];
@@ -59,6 +61,8 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
         setOpen(false);
     };
 
+
+    //logic to add to cart in certain case
     const addToCart = (id: number) => {
         let counter = 0
         const newUserCart = userCart.map((eachItem) => {

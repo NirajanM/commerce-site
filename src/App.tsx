@@ -54,10 +54,10 @@ function App() {
             <span className="font-black text-sm sm:text-md md:text-lg flex justify-center items-center text-white"><StorefrontIcon /> AlienShop</span>
             <div className='flex justify-between gap-2 sm:gap-4 md:gap-8 lg:gap-12 font-small items-center'>
               <Link to="/">
-                <span className={activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-xl hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Home</span>
+                <span className={activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-lg hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Home</span>
               </Link>
               <Link to="/contact">
-                <span className={!activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-xl hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Contact</span>
+                <span className={!activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-lg hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Contact</span>
               </Link>
               {isAuthenticated && (<>
                 <Tooltip title="Open settings">
