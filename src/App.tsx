@@ -120,18 +120,21 @@ function App() {
     updateCartItems();//important to do it here
     return (
       <>
-        <Dialog onClose={handleCartClose} open={openCart}>
+        <Dialog onClose={handleCartClose} open={openCart} >
           <>
             <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:
             </span>
             {itemsInCart.map((item) => {
               return (
-                <div className="border-2 border-blue-100 p-1 cursor-pointer text-xl text-slate-500 text-center flex items-center ">
+                <div className="border-2 border-blue-100 p-1 cursor-pointer text-xl text-slate-500 text-center flex w-80 justify-between ">
                   <div className="flex justify-center w-1/5 mr-4 items-center ">
                     <img src={`https://i.dummyjson.com/data/products/${item.id}/thumbnail.jpg`} className="h-12" />
                   </div>
-                  <span className="text-lg md:mt-4">
+                  <span className="text-sm md:mt-4">
                     {item.title}
+                  </span>
+                  <span className="text-sm md:mt-4">
+                    price:{item.amount}*${item.price}
                   </span>
                 </div>
               )

@@ -120,7 +120,7 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
     return (
 
         <div className="w-full rounded-lg shadow-md ">
-            <a href={props.thumbnail}>
+            <a href={props.thumbnail} target="_blank">
                 <img className="p-8 rounded-t-lg h-80" src={props.thumbnail} alt="product image" />
             </a>
             <div className="px-5 pb-5">
