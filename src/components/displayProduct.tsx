@@ -1,6 +1,9 @@
 import { Rating, Button, Dialog } from '@mui/material';
 import { useState, useContext } from "react";
 import { CartContext } from '../context/CartContext';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface IDisplayProductProps {
     id: number;
@@ -20,6 +23,34 @@ interface IDisplayProductProps {
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
     const { addCart, removeItem, userCart, clearCart } = useContext(CartContext);
+
+    //snackbar right bottom corner
+    const [openSnack, setOpenSnack] = useState(false);
+
+    const handleClickSnack = () => {
+        setOpenSnack(true);
+    };
+
+    const handleCloseSnack = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
+
+    const action = (
+        <>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseSnack}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </>
+    );
 
     //image drawer opener
     interface SimpleDialogProps {
@@ -57,10 +88,6 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
         setOpen(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
 
     //logic to add to cart in certain case
     const addToCart = (id: number) => {
@@ -88,8 +115,6 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
                 amount: 1
             }])
         }
-        console.log(userCart);
-
     }
 
     return (
@@ -121,8 +146,18 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
                         <span className="font-medium text-gray-700 text-sm dark:text-white px-4">stock :{props.stock}</span>
                         <span
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
-                            onClick={() => { addToCart(props.id) }}
+                            onClick={() => {
+                                addToCart(props.id);
+                                handleClickSnack();
+                            }}
                         >Add to cart</span>
+                        <Snackbar
+                            open={openSnack}
+                            autoHideDuration={6000}
+                            onClose={handleCloseSnack}
+                            message="Added To Cart"
+                            action={action}
+                        />
                     </div>
                 </div>
             </div>

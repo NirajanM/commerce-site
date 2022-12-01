@@ -18,6 +18,11 @@ type tCart = {
   amount: number;
 }
 
+
+interface CartDialogProps {
+  openCart: boolean;
+}
+
 type tProducts = {
   id: number;
   title: string;
@@ -32,6 +37,12 @@ type tProducts = {
   images: [
     string
   ]
+}
+type tItemsInCart = {
+  id: number | undefined;
+  title: string | undefined;
+  price: number | undefined;
+  amount: number | undefined;
 }
 
 function App() {
@@ -84,29 +95,43 @@ function App() {
     setOpenCart(true);
   };
 
-  interface CartDialogProps {
-    open: boolean;
+  //after item added to cart logic:
+  let itemsInCart: tItemsInCart[] | [] = [];
+
+  const updateCartItems = () => {
+    itemsInCart = userCart.map((item: tCart) => {
+      const filterItem = wholeProducts.find(i => i.id === item.productId)
+      return (
+        {
+          id: filterItem?.id,
+          title: filterItem?.title,
+          price: filterItem?.price,
+          amount: item.amount
+        }
+      );
+    });
   }
 
   function CartDialog(props: CartDialogProps) {
-    const { open } = props;
-
+    const { openCart } = props;
     const handleCartClose = () => {
       setOpenCart(false);
     };
-
+    updateCartItems();//important to do it here
     return (
       <>
         <Dialog onClose={handleCartClose} open={openCart}>
           <>
-            <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:</span>
-            {userCart.map((item) => {
+            <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:
+            </span>
+            {itemsInCart.map((item) => {
               return (
                 <div className="border-2 border-blue-100 p-1 cursor-pointer text-xl text-slate-500 text-center flex items-center ">
                   <div className="flex justify-center w-1/5 mr-4 items-center ">
-                    <img src={`https://i.dummyjson.com/data/products/${item.productId}/thumbnail.jpg`} className="h-12" />
+                    <img src={`https://i.dummyjson.com/data/products/${item.id}/thumbnail.jpg`} className="h-12" />
                   </div>
                   <span className="text-lg md:mt-4">
+                    {item.title}
                   </span>
                 </div>
               )
@@ -121,12 +146,15 @@ function App() {
   return (
     <>
       <div className='fixed bottom-6 right-6 z-10'>
-        <Fab aria-label="add" onClick={handleCartClick} >
+        <Fab aria-label="add" onClick={() => {
+          updateCartItems();
+          handleCartClick();
+        }} >
           <ShoppingCartIcon className='text-blue-500/80 hover:text-blue-700' />
         </Fab>
         <div className='py-2'>
           <CartDialog
-            open={openCart}
+            openCart={openCart}
           />
         </div>
       </div>
