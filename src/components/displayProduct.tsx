@@ -1,5 +1,6 @@
 import { Rating, Button, Dialog } from '@mui/material';
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from '../context/CartContext';
 
 interface IDisplayProductProps {
     title: string;
@@ -17,7 +18,7 @@ interface IDisplayProductProps {
 }
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
-
+    const { addCart, removeItem, userCart, clearCart } = useContext(CartContext);
     interface SimpleDialogProps {
         open: boolean;
         images: [string];

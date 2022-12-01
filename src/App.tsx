@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -28,11 +28,28 @@ function App() {
 
   const [activeHome, setActiveHome] = useState<Boolean>(true);
   const { user, isAuthenticated } = useAuth0();
-  const [userCart, setUserCart] = useState<[tCart] | null>(null);
+
+  //cart logic:
+  const [userCart, setUserCart] = useState<tCart[]>([]);
+  const addCart = useCallback(
+    (newItem: tCart) => setUserCart([...userCart, newItem]),
+    [userCart]
+  );
+  const clearCart = useCallback(() => setUserCart([]), []);
+  const removeItem = useCallback(
+    (id: number) => setUserCart(userCart.filter((t) => t.productId !== id)),
+    [userCart]
+  );
+
   return (
     <>
       <Router>
-        <CartContext.Provider value={{ userCart, setUserCart }}>
+        <CartContext.Provider value={{
+          addCart,
+          removeItem,
+          clearCart,
+          userCart
+        }}>
           <nav className='bg-blue-600  px-1 md:px-8 lg:px-12 py-8 flex justify-between items-center shadow-xl'>
             <span className="font-black text-sm sm:text-md md:text-lg flex justify-center items-center text-white"><StorefrontIcon /> AlienShop</span>
             <div className='flex justify-between gap-2 sm:gap-4 md:gap-8 lg:gap-12 font-small items-center'>
