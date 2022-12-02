@@ -120,9 +120,8 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
     return (
 
         <div className="w-full flex flex-col justify-between rounded-lg shadow-md ">
-            <a href={props.thumbnail} target="_blank" className='flex justify-center'>
-                <img className="p-8 rounded-t-lg h-46 sm-56 md:h-52 lg:h-64 xl:h-80 sm:h-80" src={props.thumbnail} alt="product image" />
-            </a>
+            <a href={props.thumbnail} target="_blank" className='flex justify-center'><img className="p-8 rounded-t-lg h-46 sm-56 md:h-52 lg:h-64 xl:h-80 sm:h-80" src={props.thumbnail} alt="product image" /></a>
+
             <div className="px-5 h-full flex justify-between flex-col pb-5">
                 <h5 className="text-lg font-semibold tracking-tight text-gray-700 dark:text-white">{props.title}</h5>
                 <p className='text-sm font-normal text-gray-600 py-4'>{props.description}</p>

@@ -45,23 +45,25 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                     <Link className='text-white bg-blue-400 hover:bg-blue-600 hover:scale-110 rounded-lg border-2 text-lg px-4 mb-4' to="/">
                         Go back
                     </Link></span>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-2 sm:gap-12 sm:px-12 py-8'>
-                    {products?.map((product) => {
-                        return <DisplayProduct
-                            id={product.id}
-                            title={product.title}
-                            stock={product.stock}
-                            price={product.price}
-                            discount={product.discountPercentage}
-                            rating={product.rating}
-                            description={product.description}
-                            brand={product.brand}
-                            category={product.category}
-                            thumbnail={product.thumbnail}
-                            images={product.images}
-                        />
-                    })}
-                </div>
+                {products ?
+                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-2 sm:gap-12 sm:px-12 py-8'>
+                        {products?.map((product) => {
+                            return <DisplayProduct
+                                id={product.id}
+                                title={product.title}
+                                stock={product.stock}
+                                price={product.price}
+                                discount={product.discountPercentage}
+                                rating={product.rating}
+                                description={product.description}
+                                brand={product.brand}
+                                category={product.category}
+                                thumbnail={product.thumbnail}
+                                images={product.images}
+                            />
+                        })}
+                    </div>
+                    : <div className='flex justify-center items-center'><div className="lds-facebook"><div></div><div></div><div></div></div></div>}
             </div>
         </div>);
 };
