@@ -11,6 +11,7 @@ import { Avatar, Tooltip, Menu, DialogTitle } from '@mui/material'
 import LogoutButton from './components/Logout';
 import { CartContext } from './context/CartContext';
 import { Fab, Dialog } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios"
 
 type tCart = {
@@ -121,25 +122,33 @@ function App() {
     return (
       <>
         <Dialog onClose={handleCartClose} open={openCart} >
-          <>
+          <div className='flex justify-center items-center flex-col'>
             <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:
             </span>
             {itemsInCart.map((item) => {
               return (
-                <div className="border-2 border-blue-100 p-1 cursor-pointer text-xl text-slate-500 text-center flex w-80 justify-between ">
-                  <div className="flex justify-center w-1/5 mr-4 items-center ">
+                <div className="border-2 border-blue-100 w-full p-2 cursor-pointer text-slate-500 grid grid-cols-8 justify-between items-center">
+                  <div className="flex justify-center mr-4 items-center ">
                     <img src={`https://i.dummyjson.com/data/products/${item.id}/thumbnail.jpg`} className="h-12" />
                   </div>
-                  <span className="text-sm md:mt-4">
+                  <span className="text-sm text-left col-span-4 md:mt-4">
                     {item.title}
                   </span>
-                  <span className="text-sm md:mt-4">
-                    price:{item.amount}*${item.price}
+                  <span className="text-sm text-center col-span-2 md:mt-4">
+                    price: {item.amount} * ${item.price}
+                  </span>
+                  <span onClick={() => {
+                    removeItem(item.id || 0);
+                    updateCartItems();
+                  }}
+                    className="text-center"
+                  >
+                    <CloseIcon />
                   </span>
                 </div>
               )
             })}
-          </>
+          </div>
         </Dialog>
       </>
     );

@@ -45,7 +45,7 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                     <Link className='text-white bg-blue-400 hover:bg-blue-600 hover:scale-110 rounded-lg border-2 text-lg px-4 mb-4' to="/">
                         Go back
                     </Link></span>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 px-12 py-8'>
+                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-2 sm:gap-12 sm:px-12 py-8'>
                     {products?.map((product) => {
                         return <DisplayProduct
                             id={product.id}
