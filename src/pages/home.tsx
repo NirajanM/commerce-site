@@ -5,10 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 import Categories from '../components/categories';
 import Products from '../components/products';
 import LoginButton from '../components/Login';
-import { Fab, Dialog } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useState, useEffect } from 'react'
-import axios from "axios"
 
 interface IHomeProps {
     user: {}
