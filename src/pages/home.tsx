@@ -39,12 +39,13 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
                 {!authenticate && <LoginButton />}
             </header>
-            <section id="hot-products" className='text-center my-8'>
+            <section id="hot-products" className='text-center mt-8 mb-40'>
                 <span className='text-slate-500 text-3xl font-black border-b-4'>Latest Products</span>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-2 sm:gap-12 sm:px-12 py-8'>
+                <div id="hotProduct_grid"
+                    className='grid grid-cols-1 grid-rows-1 xl:grid-cols-3 px-4 gap-8 my-4 mb-16 sm:px-20 md:px-40 px-1 sm:gap-12 sm:px-12 py-8'>
                     {props.products?.map((product) => {
                         return (
-                            (product.id) % 5 == 0 ?
+                            (product.id + 6) % 30 == 0 ?
                                 <DisplayProduct
                                     id={product.id}
                                     title={product.title}
@@ -61,11 +62,32 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                     })}</div>
             </section>
             <section>
-                <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Products Categories:</p>
+                <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Shop Products By Categories:</p>
                 <Routes>
                     <Route path="" element={<Categories />} />
                     <Route path='category/*' element={<Products />} />
                 </Routes>
+            </section>
+            <section className='text-center border-t-8 border pt-40 pb-20 blue-600'>
+                <span className='text-slate-500 text-3xl font-black border-b-4'>Best Selling Products:</span>
+                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-4 gap-8 sm:gap-12 sm:px-12 py-8'>
+                    {props.products?.map((product) => {
+                        return (
+                            (product.id + 19) % 17 == 0 ?
+                                <DisplayProduct
+                                    id={product.id}
+                                    title={product.title}
+                                    stock={product.stock}
+                                    price={product.price}
+                                    discount={product.discountPercentage}
+                                    rating={product.rating}
+                                    description={product.description}
+                                    brand={product.brand}
+                                    category={product.category}
+                                    thumbnail={product.thumbnail}
+                                    images={product.images}
+                                /> : null)
+                    })}</div>
             </section>
             <div className=' shadow-lg shadow-blue h-8'></div>
             <section className='text-center py-40 px-4'>

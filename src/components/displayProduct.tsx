@@ -119,8 +119,8 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
 
     return (
 
-        <div className="w-full flex flex-col justify-between rounded-lg shadow-md ">
-            <a href={props.thumbnail} target="_blank" className='flex justify-center'><img className="p-8 rounded-t-lg h-46 sm-56 md:h-52 lg:h-64 xl:h-80 sm:h-80" src={props.thumbnail} alt="product image" /></a>
+        <div className="w-full flex flex-col justify-between rounded-lg shadow-md hover:bg-green-100/30">
+            <a href={props.thumbnail} target="_blank" className='flex justify-center'><img className="p-1 md:p-8 rounded-t-lg h-44 md:h-52 lg:h-64 xl:h-80" src={props.thumbnail} alt="product image" /></a>
 
             <div className="px-5 h-full flex justify-between flex-col pb-5">
                 <h5 className="text-lg font-semibold tracking-tight text-gray-700 dark:text-white">{props.title}</h5>
@@ -140,8 +140,8 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{props.rating}</span>
                 </div>
                 <div className="flex items-center flex-col sm:flex-row justify-between">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white py-8 sm:py-0">${props.price}</span>
-                    <div>
+                    <span className="text-3xl font-bold text-gray-900 dark:text-white  pb-2 md:pb-0 md:py-8 sm:py-0">${props.price}</span>
+                    <div className='flex flex-col md:flex-row'>
                         <span className="font-medium text-gray-700 text-sm dark:text-white px-4">stock :{props.stock}</span>
                         <span
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"

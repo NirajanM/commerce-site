@@ -46,7 +46,7 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                         Go back
                     </Link></span>
                 {products ?
-                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-2 sm:gap-12 sm:px-12 py-8'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 gap-8 my-4 sm:gap-12 sm:px-12 py-8'>
                         {products?.map((product) => {
                             return <DisplayProduct
                                 id={product.id}

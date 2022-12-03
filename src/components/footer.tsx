@@ -157,7 +157,7 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
 
                 <div className="mb-6">
                     <p>
-                        I don't know what to write in here, I am a developer + designer, and not a salesman or something like that, so doing this is what feels write for me XD,<br /> making this responsive and functional is my only duty here
+                        I don't know what to write in here, I am a developer + designer, and not a salesman or something like that, so doing this is what feels right to me XD,<br /> <strong>Making this responsive and functional is my only duty here.</strong>
                     </p>
                 </div>
 
