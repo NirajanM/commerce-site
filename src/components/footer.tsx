@@ -6,7 +6,6 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
     return (
         <>
             <div className="bg-blue-600 px-6 text-center pt-6">
-                <span className="text-white font-black text-lg border-b-2">footer is dummy</span>
                 <div className="flex justify-center mt-4 mb-6">
                     <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                         <svg aria-hidden="true"
@@ -158,9 +157,7 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
 
                 <div className="mb-6">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                        eum harum corrupti dicta, aliquam sequi voluptate quas.
+                        I don't know what to write in here, I am a developer + designer, and not a salesman or something like that, so doing this is what feels write for me XD,<br /> making this responsive and functional is my only duty here
                     </p>
                 </div>
 
