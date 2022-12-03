@@ -210,8 +210,8 @@ function App() {
             </div>
           </nav>
           <Routes>
-            <Route index element={<Home user={User} authenticate={isAuthenticated} />} />
-            <Route path="/*" element={<Home user={User} authenticate={isAuthenticated} />} />
+            <Route index element={<Home user={User} authenticate={isAuthenticated} products={wholeProducts} />} />
+            <Route path="/*" element={<Home user={User} authenticate={isAuthenticated} products={wholeProducts} />} />
             <Route path="contact" element={<Contact />} />
           </Routes>
           <Footer />
