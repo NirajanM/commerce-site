@@ -61,7 +61,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                                 /> : null)
                     })}</div>
             </section>
-            <section>
+            <section id="categoriesOfProducts">
                 <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Shop Products By Categories:</p>
                 <Routes>
                     <Route path="" element={<Categories />} />

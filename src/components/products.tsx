@@ -63,7 +63,7 @@ const Products: React.FunctionComponent<IProductsProps> = (props) => {
                             />
                         })}
                     </div>
-                    : <div className='flex justify-center items-center'><div className="lds-facebook"><div></div><div></div><div></div></div></div>}
+                    : <div className='flex justify-center h-80 items-center'><div className="lds-facebook"><div></div><div></div><div></div></div></div>}
             </div>
         </div>);
 };
