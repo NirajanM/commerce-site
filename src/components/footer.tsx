@@ -240,7 +240,7 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
                 </div>
             </div>
 
-            <footer className='text-sm font-small bg-blue-900 py-4 text-white flex justify-between pl-6 pr-28 items-center'>
+            <footer className='text-sm font-small bg-blue-900 py-4 text-white flex flex-col md:flex-row justify-between pl-6 md:pr-28 md:items-center'>
                 <div className="flex flex-col">
                     <span>© {currentYear}, All rights reserved.</span>
                     <span>&#60; Designed and Developed by <a className='font-semibold' href="https://www.nirajanmalla.com.np">Nirajan Malla</a> /&#62;</span>

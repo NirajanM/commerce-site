@@ -6,6 +6,10 @@ import Categories from '../components/categories';
 import Products from '../components/products';
 import LoginButton from '../components/Login';
 import DisplayProduct from '../components/displayProduct';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { useState, useEffect } from "react"
 
 type tProducts = {
     id: number;
@@ -31,6 +35,7 @@ interface IHomeProps {
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
     const { user, authenticate } = props;
+    const [searchValue, setSearchValue] = useState<String>("");
 
     return (
         <div id="home" className="py-4">
@@ -39,10 +44,10 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
                 {!authenticate && <LoginButton />}
             </header>
-            <section id="hot-products" className='text-center mt-8 mb-40'>
-                <span className='text-slate-500 text-3xl font-black border-b-4'>Latest Products</span>
+            <section id="hot-products" className='text-center mt-8'>
+                <span className='text-slate-500 text-lg sm:text-3xl font-black border-b-4'>Latest Products</span>
                 <div id="hotProduct_grid"
-                    className='grid grid-cols-1 grid-rows-1 xl:grid-cols-3 px-4 gap-8 my-4 mb-16 sm:px-20 md:px-40 px-1 sm:gap-12 sm:px-12 py-8'>
+                    className='grid grid-cols-1 grid-rows-1 xl:grid-cols-3 px-4 gap-8 mt-20 sm:px-20 md:px-40 px-1 sm:gap-12 sm:px-12 pt-8'>
                     {props.products?.map((product) => {
                         return (
                             (product.id + 6) % 30 == 0 ?
@@ -61,15 +66,52 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                                 /> : null)
                     })}</div>
             </section>
+            <section className='pt-8 sm:pt-20 md:pt-40 flex justify-center items-center px-4' id="searchbar">
+                <div className='flex border-2 border-slate-400/50 rounded-lg px-8 text-sm inline text-center'>
+                    <IconButton type="button" aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+                    <InputBase
+                        placeholder="Quick Search"
+                        inputProps={{ 'aria-label': 'Quick Search' }}
+                        value={searchValue}
+                        onChange={(e) => {
+                            setSearchValue(e.target.value);
+                        }}
+                    />
+                </div>
+            </section>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-4 gap-8 sm:gap-12 sm:px-12 py-8'>
+                {(searchValue != "") ? props.products?.map((product) => {
+                    return (
+                        ((product.title.toLowerCase().includes(searchValue.toLowerCase()) || product.brand.toLowerCase().includes(searchValue.toLowerCase())) ?
+                            <DisplayProduct
+                                id={product.id}
+                                title={product.title}
+                                stock={product.stock}
+                                price={product.price}
+                                discount={product.discountPercentage}
+                                rating={product.rating}
+                                description={product.description}
+                                brand={product.brand}
+                                category={product.category}
+                                thumbnail={product.thumbnail}
+                                images={product.images}
+                            /> : null)
+                    )
+                }) : null
+                }</div>
+
             <section id="categoriesOfProducts">
-                <p className='bg-blue-500 text-white font-semibold text-2xl py-2 text-center'>Shop Products By Categories:</p>
+                <p className='bg-blue-500 text-white font-semibold text-lg sm:text-2xl py-2 text-center'>Shop Products By Categories:</p>
                 <Routes>
                     <Route path="" element={<Categories />} />
                     <Route path='category/*' element={<Products />} />
                 </Routes>
             </section>
             <section className='text-center border-t-8 border pt-40 pb-20 blue-600'>
-                <span className='text-slate-500 text-3xl font-black border-b-4'>Best Selling Products:</span>
+                <span className='text-slate-500 text-lg sm:text-3xl font-black border-b-4'>Best Selling Products:</span>
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-4 sm:0 px-4 gap-8 sm:gap-12 sm:px-12 py-8'>
                     {props.products?.map((product) => {
                         return (
