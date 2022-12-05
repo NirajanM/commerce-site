@@ -6,13 +6,13 @@ import Footer from './components/footer';
 import Home from './pages/home';
 import Contact from './pages/contact';
 import StorefrontIcon from '@mui/icons-material/Storefront';
-import { useAuth0, User } from "@auth0/auth0-react";
 import { Avatar, Tooltip, Menu, DialogTitle } from '@mui/material'
 import LogoutButton from './components/Logout';
 import { CartContext } from './context/CartContext';
 import { Fab, Dialog } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios"
+import { auth } from "./config/firebase"
 
 type tCart = {
   productId: number;
@@ -57,7 +57,6 @@ function App() {
   };
 
   const [activeHome, setActiveHome] = useState<Boolean>(true);
-  const { user, isAuthenticated } = useAuth0();
 
   //cart logic:
   const [userCart, setUserCart] = useState<tCart[]>([]);
@@ -186,9 +185,11 @@ function App() {
               <Link to="/contact">
                 <span className={!activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-lg hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Contact</span>
               </Link>
-              {isAuthenticated && (<>
+              {auth.currentUser && (<>
                 <Tooltip title="Open settings">
-                  <Avatar className='cursor-pointer' alt={user?.name} src={user?.picture} onClick={handleClick} sx={{ width: 28, height: 28 }} />
+                  <Avatar className='cursor-pointer'
+                    alt={auth.currentUser?.displayName || "guest"}
+                    src={auth.currentUser?.photoURL || ""} onClick={handleClick} sx={{ width: 28, height: 28 }} />
                 </Tooltip>
                 <Menu
                   id="basic-menu"
@@ -201,7 +202,7 @@ function App() {
 
                 >
                   <div className='flex justify-center align-center flex-col text-center px-4 py-1'>
-                    <p className='p-1 font-bold text-slate-600 mb-2'>Logged in as:<br /><span className='text-sm text-slate-400'>{user?.name}</span></p>
+                    <p className='p-1 font-bold text-slate-600 mb-2'>Logged in as:<br /><span className='text-sm text-slate-400'>{auth.currentUser?.displayName}</span></p>
                     <span><LogoutButton /></span>
                   </div>
                 </Menu>
@@ -210,8 +211,8 @@ function App() {
             </div>
           </nav>
           <Routes>
-            <Route index element={<Home user={User} authenticate={isAuthenticated} products={wholeProducts} />} />
-            <Route path="/*" element={<Home user={User} authenticate={isAuthenticated} products={wholeProducts} />} />
+            <Route index element={<Home products={wholeProducts} />} />
+            <Route path="/*" element={<Home products={wholeProducts} />} />
             <Route path="contact" element={<Contact />} />
           </Routes>
           <Footer />

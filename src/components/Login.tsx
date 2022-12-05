@@ -1,8 +1,12 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { auth, provider } from "../config/firebase"
 import { Button } from "@mui/material"
+import { signInWithPopup } from "firebase/auth"
+
 const LoginButton = () => {
-    const { loginWithRedirect } = useAuth0();
-    return <Button variant="contained" onClick={() => loginWithRedirect()}>Sign in</Button>;
+    return <Button variant="contained" onClick={() => {
+        signInWithPopup(auth, provider);
+    }
+    }>Sign in with Google</Button>;
 };
 
 export default LoginButton;

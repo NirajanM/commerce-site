@@ -10,6 +10,7 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, useEffect } from "react"
+import { auth } from "../config/firebase"
 
 type tProducts = {
     id: number;
@@ -28,13 +29,10 @@ type tProducts = {
 }
 
 interface IHomeProps {
-    user: {}
-    authenticate: boolean
     products: tProducts[]
 }
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
-    const { user, authenticate } = props;
     const [searchValue, setSearchValue] = useState<String>("");
 
     return (
@@ -42,7 +40,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
             <header className="xl:px-60 lg:px-52 md:px-40 sm:px-20 px-10 py-28 text-center">
                 <p id="boldstyle" className="text-2xl text-slate-600 md:text-5xl md:text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
-                {!authenticate && <LoginButton />}
+                {!auth.currentUser && <LoginButton />}
             </header>
             <section id="hot-products" className='text-center mt-8'>
                 <span className='text-slate-500 text-lg sm:text-3xl font-black border-b-4'>Latest Products</span>

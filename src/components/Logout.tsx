@@ -1,11 +1,13 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { signOut } from "firebase/auth"
+import { auth } from "../config/firebase"
 import { Button } from "@mui/material"
+
 const LogoutButton = () => {
-    const { logout } = useAuth0();
 
     return (
-        <Button variant="contained" size="small" onClick={() => logout({ returnTo: window.location.origin })}>
+        <Button variant="contained" size="small" onClick={() => {
+            signOut(auth);
+        }}>
             Log Out
         </Button>
     );
