@@ -203,7 +203,7 @@ function App() {
                 >
                   <div className='flex justify-center align-center flex-col text-center px-4 py-1'>
                     <p className='p-1 font-bold text-slate-600 mb-2'>Logged in as:<br /><span className='text-sm text-slate-400'>{auth.currentUser?.displayName}</span></p>
-                    <span><LogoutButton /></span>
+                    <span><LogoutButton close={handleClose} /></span>
                   </div>
                 </Menu>
               </>
