@@ -9,7 +9,7 @@ const LoginButton = () => {
     const navigate = useNavigate();
     return <Button variant="contained" onClick={() => {
         signInWithPopup(auth, provider).then(() => {
-            navigate("/home");
+            navigate("/");
             alert("login successful")
         });
     }

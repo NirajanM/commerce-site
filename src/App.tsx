@@ -40,7 +40,7 @@ type tProducts = {
   ]
 }
 type tItemsInCart = {
-  id: number | undefined;
+  product_id: number | undefined;
   title: string | undefined;
   price: number | undefined;
   amount: number | undefined;
@@ -103,7 +103,7 @@ function App() {
       const filterItem = wholeProducts.find(i => i.id === item.productId)
       return (
         {
-          id: filterItem?.id,
+          product_id: filterItem?.id,
           title: filterItem?.title,
           price: filterItem?.price,
           amount: item.amount
@@ -128,7 +128,7 @@ function App() {
               return (
                 <div className="border-2 border-blue-100 w-full p-2 cursor-pointer text-slate-500 grid grid-cols-8 justify-between items-center">
                   <div className="flex justify-center mr-4 items-center ">
-                    <img src={`https://i.dummyjson.com/data/products/${item.id}/thumbnail.jpg`} className="h-12" />
+                    <img src={`https://i.dummyjson.com/data/products/${item.product_id}/thumbnail.jpg`} className="h-12" />
                   </div>
                   <span className="text-sm text-left col-span-4 md:mt-4">
                     {item.title}
@@ -137,7 +137,7 @@ function App() {
                     price: {item.amount} * ${item.price}
                   </span>
                   <span onClick={() => {
-                    removeItem(item.id || 0);
+                    removeItem(item.product_id || 0);
                     updateCartItems();
                   }}
                     className="text-center"
