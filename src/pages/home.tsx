@@ -9,7 +9,7 @@ import DisplayProduct from '../components/displayProduct';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { auth } from "../config/firebase"
 
 type tProducts = {
@@ -29,7 +29,7 @@ type tProducts = {
 }
 
 interface IHomeProps {
-    products: tProducts[]
+    products: tProducts[],
 }
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {

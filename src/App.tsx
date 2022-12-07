@@ -185,29 +185,26 @@ function App() {
               <Link to="/contact">
                 <span className={!activeHome ? "scale-105 border-b-4 font-black py-2 px-1 text-lg md:text-2xl py-1" : "hover:border-2 hover:rounded-lg hover:py-2 hover:px-1 text-sm md:text-lg hover:text-white"} onClick={() => { setActiveHome(!activeHome) }}>Contact</span>
               </Link>
-              {auth.currentUser && (<>
-                <Tooltip title="Open settings">
-                  <Avatar className='cursor-pointer'
-                    alt={auth.currentUser?.displayName || "guest"}
-                    src={auth.currentUser?.photoURL || ""} onClick={handleClick} sx={{ width: 28, height: 28 }} />
-                </Tooltip>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                  }}
+              <Tooltip title="Open settings">
+                <Avatar className='cursor-pointer'
+                  alt={auth.currentUser?.displayName || "guest"}
+                  src={auth.currentUser?.photoURL || ""} onClick={handleClick} sx={{ width: 28, height: 28 }} />
+              </Tooltip>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
 
-                >
-                  <div className='flex justify-center align-center flex-col text-center px-4 py-1'>
-                    <p className='p-1 font-bold text-slate-600 mb-2'>Logged in as:<br /><span className='text-sm text-slate-400'>{auth.currentUser?.displayName}</span></p>
-                    <span><LogoutButton close={handleClose} /></span>
-                  </div>
-                </Menu>
-              </>
-              )}
+              >
+                <div className='flex justify-center align-center flex-col text-center px-4 py-1'>
+                  <p className='p-1 font-bold text-slate-600 mb-2'>Logged in as:<br /><span className='text-sm text-slate-400'>{auth.currentUser?.displayName || "guest"}</span></p>
+                  <span>{auth.currentUser ? <LogoutButton close={handleClose} /> : null}</span>
+                </div>
+              </Menu>
             </div>
           </nav>
           <Routes>
