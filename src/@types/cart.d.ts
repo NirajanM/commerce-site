@@ -9,4 +9,5 @@ export type CartContextType = {
     clearCart: () => void;
     userCart: ICart[];
     handleSignIn: (isSignedIn: boolean) => void;
+    signedIn: boolean;
 };

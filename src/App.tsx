@@ -182,7 +182,8 @@ function App() {
           removeItem,
           clearCart,
           userCart,
-          handleSignIn
+          handleSignIn,
+          signedIn
         }}>
           <nav className='bg-blue-600  px-1 md:px-8 lg:px-12 py-8 flex justify-between items-center shadow-xl'>
             <span className="font-black text-sm sm:text-md md:text-lg flex justify-center items-center text-white"><StorefrontIcon /> AlienShop</span>
@@ -195,8 +196,8 @@ function App() {
               </Link>
               <Tooltip title="Open settings">
                 <Avatar className='cursor-pointer'
-                  alt={auth.currentUser?.displayName || "guest"}
-                  src={auth.currentUser?.photoURL || ""} onClick={handleClick} sx={{ width: 28, height: 28 }} />
+                  alt={signedIn ? auth.currentUser?.displayName || "guest" : "guest"}
+                  src={signedIn ? auth.currentUser?.photoURL || "" : ""} onClick={handleClick} sx={{ width: 28, height: 28 }} />
               </Tooltip>
               <Menu
                 id="basic-menu"
