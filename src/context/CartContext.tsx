@@ -5,6 +5,7 @@ export const CartContext = createContext<CartContextType>(
         addCart: () => { },
         removeItem: () => { },
         clearCart: () => { },
+        handleSignIn: () => { },
         userCart: []
     }
 );

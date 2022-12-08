@@ -40,7 +40,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
             <header className="xl:px-60 lg:px-52 md:px-40 sm:px-20 px-10 py-28 text-center">
                 <p id="boldstyle" className="text-2xl text-slate-600 md:text-5xl md:text-slate-700">Who don't love shopping ? and that on wholesale price XD.</p>
                 <p className="text-slate-500 py-4">we are the largest salers of Nepal, feel free to roam around and find the products that will stick to your <span className='text-red-500'>heart</span> first.</p>
-                {!auth.currentUser && <LoginButton />}
+                {!auth.currentUser && <div className='flex flex-col justify-center items-center'><span className='text-slate-400 text-bold border-b-2'>To store your cart data:</span><LoginButton /></div>}
             </header>
             <section id="hot-products" className='text-center mt-8'>
                 <span className='text-slate-500 text-lg sm:text-3xl font-black border-b-4'>Latest Products</span>

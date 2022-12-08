@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
-import { Skeleton } from '@mui/material'
+import React from 'react';
 
 interface ICardProps {
     name: string;
