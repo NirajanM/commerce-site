@@ -85,7 +85,6 @@ function App() {
     try {
       const res = await axios.get(`https://dummyjson.com/products?limit=100`);
       setWholeProducts(res.data.products);
-      console.log(wholeProducts);
     } catch (err) {
       console.log(err);
     }
@@ -94,6 +93,14 @@ function App() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  //updating cart on any change
+  useEffect(() => {
+    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: itemsInCart })
+      .then((response) => {
+        console.log(response)
+      })
+  }, [userCart]);
 
   //cart icon logic with dialog
   const [openCart, setOpenCart] = useState<boolean>(false);
@@ -118,6 +125,15 @@ function App() {
       );
     });
   }
+
+  //fetching cart from db on init
+  const fetchCart = axios.post("http://localhost:4000/api/getuser", { uid: auth.currentUser?.uid })
+    .then(
+      (response) => { console.log(response.data) }
+    )
+  useEffect(() => {
+    fetchCart
+  }, [])
 
   function CartDialog(props: CartDialogProps) {
     const { openCart } = props;
