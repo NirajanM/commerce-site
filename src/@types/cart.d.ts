@@ -1,13 +1,15 @@
-export interface ICart {
-    productId: number;
-    amount: number;
+export interface tItemsInCart {
+    product_id: number | undefined;
+    title: string | undefined;
+    price: number | undefined;
+    amount: number | undefined;
 }
 
 export type CartContextType = {
-    addCart: (newItem: Icart) => void;
+    addCart: (newItem: tItemsInCart[]) => void;
     removeItem: (id: number) => void;
     clearCart: () => void;
-    userCart: ICart[];
+    userCart: tItemsInCart[];
     handleSignIn: (isSignedIn: boolean) => void;
     signedIn: boolean
 };

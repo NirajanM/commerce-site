@@ -90,15 +90,17 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
 
 
     //logic to add to cart in certain case
-    const addToCart = (id: number) => {
+    const addToCart = (id: number, title: string, price: number) => {
         let counter = 0
         const newUserCart = userCart.map((eachItem) => {
-            if (eachItem.productId === id) {
+            if (eachItem.product_id === id) {
                 counter++;
                 return (
                     {
-                        productId: id,
-                        amount: eachItem.amount + 1
+                        product_id: id,
+                        amount: (eachItem.amount || 0) + 1,
+                        title: title,
+                        price: price
                     }
                 )
             }
@@ -111,8 +113,10 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
         else {
 
             addCart([...newUserCart, {
-                productId: id,
-                amount: 1
+                product_id: id,
+                amount: 1,
+                title: title,
+                price: price
             }])
         }
     }
@@ -146,7 +150,7 @@ const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) =>
                         <span
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
                             onClick={() => {
-                                addToCart(props.id);
+                                addToCart(props.id, props.title, props.price);
                                 handleClickSnack();
                             }}
                         >Add to cart</span>

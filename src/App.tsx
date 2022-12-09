@@ -14,12 +14,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios"
 import { auth } from "./config/firebase"
 
-type tCart = {
-  productId: number;
-  amount: number;
-}
-
-
 interface CartDialogProps {
   openCart: boolean;
 }
@@ -67,14 +61,14 @@ function App() {
   );
 
   //cart logic:
-  const [userCart, setUserCart] = useState<tCart[]>([]);
+  const [userCart, setUserCart] = useState<tItemsInCart[]>([]);
   const addCart = useCallback(
-    (newCart: tCart[]) => setUserCart(newCart),
+    (newCart: tItemsInCart[]) => setUserCart(newCart),
     [userCart]
   );
   const clearCart = useCallback(() => setUserCart([]), []);
   const removeItem = useCallback(
-    (id: number) => setUserCart(userCart.filter((t) => t.productId !== id)),
+    (id: number) => setUserCart(userCart.filter((t) => t.product_id !== id)),
     [userCart]
   );
 
@@ -94,7 +88,7 @@ function App() {
   const fetchItemsInCart = () => {
     axios.post("http://localhost:4000/api/getuser", { uid: auth.currentUser?.uid })
       .then(response => {
-        itemsInCart = response.data[0].products.map((product: tItemsInCart) => {
+        const fetchedItemsInCart = response.data[0].products.map((product: tItemsInCart) => {
           return (
             {
               product_id: product.product_id,
@@ -104,11 +98,12 @@ function App() {
             }
           )
         });
+        setUserCart(fetchedItemsInCart);
       })
   }
 
   const updateMyCart = () => {
-    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: itemsInCart })
+    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: userCart })
       .then(response => console.log(response.data))
   }
 
@@ -123,9 +118,6 @@ function App() {
     setOpenCart(true);
   };
 
-  //after item added to cart logic:
-  let itemsInCart: tItemsInCart[] | [] = [];
-
   function CartDialog(props: CartDialogProps) {
     const { openCart } = props;
     const handleCartClose = () => {
@@ -137,7 +129,7 @@ function App() {
           <div className='flex justify-center items-center flex-col'>
             <span className='px-8 py-2 text-lg font-black text-blue-400 border-b-2 border-blue-500'>your cart:
             </span>
-            {itemsInCart.map((item) => {
+            {userCart.map((item) => {
               return (
                 <div className="border-2 border-blue-100 w-full p-2 cursor-pointer text-slate-500 grid grid-cols-8 justify-between items-center">
                   <div className="flex justify-center mr-4 items-center ">
