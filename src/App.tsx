@@ -9,7 +9,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Avatar, Tooltip, Menu, DialogTitle } from '@mui/material'
 import LogoutButton from './components/Logout';
 import { CartContext } from './context/CartContext';
-import { Fab, Dialog } from '@mui/material'
+import { Fab, Dialog, Button } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios"
 import { auth } from "./config/firebase"
@@ -39,6 +39,7 @@ type tProducts = {
     string
   ]
 }
+
 type tItemsInCart = {
   product_id: number | undefined;
   title: string | undefined;
@@ -90,17 +91,30 @@ function App() {
     }
   };
 
+  const fetchItemsInCart = () => {
+    axios.post("http://localhost:4000/api/getuser", { uid: auth.currentUser?.uid })
+      .then(response => {
+        itemsInCart = response.data[0].products.map((product: tItemsInCart) => {
+          return (
+            {
+              product_id: product.product_id,
+              amount: product.amount,
+              title: product.title,
+              price: product.price
+            }
+          )
+        });
+      })
+  }
+
+  const updateMyCart = () => {
+    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: itemsInCart })
+      .then(response => console.log(response.data))
+  }
+
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  //updating cart on any change
-  useEffect(() => {
-    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: itemsInCart })
-      .then((response) => {
-        console.log(response)
-      })
-  }, [userCart]);
 
   //cart icon logic with dialog
   const [openCart, setOpenCart] = useState<boolean>(false);
@@ -112,35 +126,11 @@ function App() {
   //after item added to cart logic:
   let itemsInCart: tItemsInCart[] | [] = [];
 
-  const updateCartItems = () => {
-    itemsInCart = userCart.map((item: tCart) => {
-      const filterItem = wholeProducts.find(i => i.id === item.productId)
-      return (
-        {
-          product_id: filterItem?.id,
-          title: filterItem?.title,
-          price: filterItem?.price,
-          amount: item.amount
-        }
-      );
-    });
-  }
-
-  //fetching cart from db on init
-  const fetchCart = axios.post("http://localhost:4000/api/getuser", { uid: auth.currentUser?.uid })
-    .then(
-      (response) => { console.log(response.data) }
-    )
-  useEffect(() => {
-    fetchCart
-  }, [])
-
   function CartDialog(props: CartDialogProps) {
     const { openCart } = props;
     const handleCartClose = () => {
       setOpenCart(false);
     };
-    updateCartItems();//important to do it here
     return (
       <>
         <Dialog onClose={handleCartClose} open={openCart} >
@@ -161,7 +151,6 @@ function App() {
                   </span>
                   <span onClick={() => {
                     removeItem(item.product_id || 0);
-                    updateCartItems();
                   }}
                     className="text-center"
                   >
@@ -170,6 +159,10 @@ function App() {
                 </div>
               )
             })}
+            <div className='flex flex-col px-4 py-y gap-2 my-2'>
+              <Button variant='contained' onClick={() => { fetchItemsInCart() }}>sync with gmail</Button>
+              <Button variant='outlined' onClick={() => { updateMyCart() }}>upload to gmail</Button>
+            </div>
           </div>
         </Dialog>
       </>
@@ -181,7 +174,6 @@ function App() {
     <>
       <div className='fixed bottom-6 right-6 z-10'>
         <Fab aria-label="add" onClick={() => {
-          updateCartItems();
           handleCartClick();
         }} >
           <ShoppingCartIcon className='text-blue-500/80 hover:text-blue-700' />

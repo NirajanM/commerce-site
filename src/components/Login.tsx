@@ -4,13 +4,12 @@ import { signInWithPopup } from "firebase/auth"
 import { useContext } from "react";
 import { CartContext } from '../context/CartContext';
 
-
 const LoginButton = () => {
     const { handleSignIn } = useContext(CartContext);
     return <Button variant="contained" onClick={() => {
         signInWithPopup(auth, provider).then(() => {
             handleSignIn(true);
-            alert("login successful")
+            alert("login successful");
         });
     }
     }>Sign in with Google</Button>;

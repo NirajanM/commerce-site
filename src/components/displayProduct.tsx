@@ -22,7 +22,7 @@ interface IDisplayProductProps {
 }
 
 const DisplayProduct: React.FunctionComponent<IDisplayProductProps> = (props) => {
-    const { addCart, removeItem, userCart, clearCart } = useContext(CartContext);
+    const { addCart, userCart } = useContext(CartContext);
 
     //snackbar right bottom corner
     const [openSnack, setOpenSnack] = useState(false);
