@@ -86,7 +86,7 @@ function App() {
   };
 
   const fetchItemsInCart = () => {
-    axios.post("http://localhost:4000/api/getuser", { uid: auth.currentUser?.uid })
+    axios.post("https://as-backend-iota.vercel.app/api/getuser", { uid: auth.currentUser?.uid })
       .then(response => {
         const fetchedItemsInCart = response.data[0].products.map((product: tItemsInCart) => {
           return (
@@ -103,7 +103,7 @@ function App() {
   }
 
   const updateMyCart = () => {
-    axios.post("http://localhost:4000/api/recorduser", { uid: auth.currentUser?.uid, products: userCart })
+    axios.post("https://as-backend-iota.vercel.app/api/recorduser", { uid: auth.currentUser?.uid, products: userCart })
       .then(response => console.log(response.data))
   }
 
