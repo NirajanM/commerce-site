@@ -118,6 +118,21 @@ function App() {
     setOpenCart(true);
   };
 
+  //strpie payment logic
+  const initiatePayment = async () => {
+    axios
+      .post(`http://localhost:4000/create-checkout-session`, {
+        userCart,
+        userId: auth.currentUser?.uid || "guest",
+      })
+      .then((response) => {
+        if (response.data.url) {
+          window.location.href = response.data.url;
+        }
+      })
+      .catch((err) => console.log(err.message));
+  }
+
   function CartDialog(props: CartDialogProps) {
     const { openCart } = props;
     const handleCartClose = () => {
@@ -152,6 +167,7 @@ function App() {
               )
             })}
             <div className='flex flex-col px-4 py-y gap-2 my-2'>
+              <Button variant='contained' onClick={() => { initiatePayment() }}>Proceed to order</Button>
               <Button variant='contained' onClick={() => { fetchItemsInCart() }}>sync with gmail</Button>
               <Button variant='outlined' onClick={() => { updateMyCart() }}>upload to gmail</Button>
             </div>
