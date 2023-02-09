@@ -46,7 +46,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
             <section id="hot-products" className='text-center mt-8'>
                 <span className='text-slate-500 text-lg sm:text-3xl font-black border-b-4'>Latest Products</span>
                 <div id="hotProduct_grid"
-                    className='grid grid-cols-1 grid-rows-1 xl:grid-cols-3 px-4 gap-8 mt-20 sm:px-20 md:px-40 px-1 sm:gap-12 sm:px-12 pt-8'>
+                    className='grid grid-cols-1 md:grid-cols-2 justify-center xl:grid-cols-3 px-4 gap-4 mx-auto my-4 sm:gap-12 sm:px-12 py-8'>
                     {props.products?.map((product) => {
                         return (
                             (product.id + 6) % 30 == 0 ?
@@ -66,7 +66,7 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
                     })}</div>
             </section>
             <section className='pt-8 sm:pt-20 md:pt-40 flex justify-center items-center px-4' id="searchbar">
-                <div className='flex border-2 border-slate-400/50 rounded-lg px-8 text-sm inline text-center'>
+                <div className='flex border-2 border-slate-400/50 rounded-lg px-8 text-sm text-center'>
                     <IconButton type="button" aria-label="search">
                         <SearchIcon />
                     </IconButton>
