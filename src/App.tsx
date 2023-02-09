@@ -121,7 +121,7 @@ function App() {
   //strpie payment logic
   const initiatePayment = async () => {
     axios
-      .post(`http://localhost:4000/create-checkout-session`, {
+      .post(`https://as-backend-iota.vercel.app/create-checkout-session`, {
         userCart,
         userId: auth.currentUser?.uid || "guest",
       })
