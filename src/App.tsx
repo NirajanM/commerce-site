@@ -13,6 +13,8 @@ import { Fab, Dialog, Button } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios"
 import { auth } from "./config/firebase"
+import PurchaseSuccessful from './pages/PurchaseSuccess';
+import PurchaseCanceled from './pages/PurchaseCanceled';
 
 interface CartDialogProps {
   openCart: boolean;
@@ -236,6 +238,8 @@ function App() {
             <Route index element={<Home products={wholeProducts} />} />
             <Route path="/*" element={<Home products={wholeProducts} />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="purchase-successful" element={<PurchaseSuccessful />} />
+            <Route path="purchase-canceled" element={<PurchaseCanceled />} />
           </Routes>
           <Footer />
         </CartContext.Provider>
