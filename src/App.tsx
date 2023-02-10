@@ -237,9 +237,9 @@ function App() {
           <Routes>
             <Route index element={<Home products={wholeProducts} />} />
             <Route path="/*" element={<Home products={wholeProducts} />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="purchase-successful" element={<PurchaseSuccessful />} />
-            <Route path="purchase-canceled" element={<PurchaseCanceled />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/purchase-successful" element={<PurchaseSuccessful />} />
+            <Route path="/purchase-canceled" element={<PurchaseCanceled />} />
           </Routes>
           <Footer />
         </CartContext.Provider>
